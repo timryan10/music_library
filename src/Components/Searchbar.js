@@ -1,10 +1,10 @@
 import { useState } from "react"
 
-function Searchbar () {
+function Searchbar ({ handleSearch }) {
     const [searchTerm , setSearchTerm] = useState('')
     return(
-        <form>
-            <input placeholder="Search for music"/>
+        <form onSubmit={(e) => handleSearch(e, searchTerm)}>
+            <input placeholder="Search for music" onChange={(e) => setSearchTerm(e.target.value)}/>
             <input type="submit"/>
         </form>
     )

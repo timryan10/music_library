@@ -8,27 +8,33 @@ function App() {
   const [data, setData] = useState([])
 
 useEffect(() => {
-  const fetchData = async () => {
-    const url = 'https://itunes.apple.com/search?term=black%20sabbath'
-    const response = await fetch(url)
-    const data = await response.json()
-
-    if (data.results) {
-      setData(data.results)
-    } else{
-      setData([])
-      setMessage('Not Found')
+    if (search) {
+      const fetchData = async () => {
+        const url = (`https://itunes.apple.com/search?term=${search}`)
+        const response = await fetch(url)
+        const data = await response.json()
+        console.log(data)
+        if (data.results.length > 0) {
+          setData(data.results)
+        } else {
+          setData([])
+          setMessage('Not Found')
+        }
+      }
+  
+      fetchData()
     }
-  }
+  }, [search])
 
-  fetchData()
-}, [search])
+const handleSearch = (e, term) => {
+  e.preventDefault()
+  setSearch(term)
+}
 
   return (
     <div className="App">
-      <Gallery />
-      {message}
-      <Searchbar />
+      <Searchbar handleSearch={handleSearch}/>
+      <Gallery data={data}/>
     </div>
   );
 }
