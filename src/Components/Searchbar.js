@@ -1,8 +1,12 @@
+import { useState } from "react"
+
 function Searchbar () {
+    const [searchTerm , setSearchTerm] = useState('')
     return(
-        <div>
-            Searchbar
-        </div>
+        <form>
+            <input placeholder="Search for music"/>
+            <input type="submit"/>
+        </form>
     )
 }
 
