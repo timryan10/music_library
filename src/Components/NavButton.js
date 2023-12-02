@@ -1,4 +1,7 @@
-const navButtons = () => {
+import { useNavigate } from "react-router-dom"
+
+const NavButtons = () => {
+    const navigate = useNavigate()
     return(
         <div>
             <button onClick={() => navigate(-1)}> Back </button>
@@ -7,3 +10,5 @@ const navButtons = () => {
         </div>
     )
 }
+
+export default NavButtons
